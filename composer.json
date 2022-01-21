@@ -1,0 +1,16 @@
+{
+    "name": "syahr/componentlibs",
+    "description": "membuat component html dalam bentuk php",
+    "authors": [
+        {
+            "name": "Syahrudinsmj",
+            "email": "syahrudinsmj@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    }
+}
