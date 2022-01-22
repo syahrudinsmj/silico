@@ -114,7 +114,7 @@ class Tab
     /**
      * @method render
      */
-    protected function render()
+    public function render()
     {
         $this->active ++;
 

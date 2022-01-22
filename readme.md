@@ -9,6 +9,8 @@ Kumpulan component kecil-kecilan untuk digunakan pribadi menggunakan php
     // -----------------------------------
     // init form
     // from  \App\Components\Form
+    use App\Components\Form;
+    // ...
     $form = new Form;
     // set action
     // by default string "/"
@@ -58,23 +60,50 @@ Kumpulan component kecil-kecilan untuk digunakan pribadi menggunakan php
 ```php
     // init form
     // from  \App\Components\Tab
+    use App\Components\Tab;
+    // ...
     $tabs = new Tab;
     
     // parameter GET active tab id
     // from label => strtolower(preg_replace("/[^a-zA-Z0-9]+/", "", $label));
     // $label , \Closure $callback
-    $tab->add('Form 1',function(){
+    $tabs->add('Form 1',function(){
         $form = new Form;
         $form->field("text","Username","username");
         return $form->render();
     });
 
-    $tab->add('Form 2',function(){
+    $tabs->add('Form 2',function(){
         $form = new Form;
         $form->field("text","Username","username");
         return $form->render();
     });
     return $tabs;
+
+```
+</details>
+
+
+<details>
+    <summary> CARD</summary>
+
+```php
+    
+    use App\Components\Card;
+    // ...
+
+    $card = new Card;
+
+    $card->setTitle('Data User');
+    $card->setDescription('List data user');
+    $card->setBody(function(){
+        // init form
+        $form = new Form;
+        $form->field("password","Password","password");
+        return $form->render();
+    });
+
+    return $card;
 
 ```
 </details>

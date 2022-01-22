@@ -55,7 +55,7 @@ class Table
     /**
      * @method render
      */
-    protected function render()
+    public function render()
     {
         $attributes = http_build_query($this->attributes, "", ' ');
         $table = "<table {$attributes}>";
