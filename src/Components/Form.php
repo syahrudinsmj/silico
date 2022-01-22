@@ -44,6 +44,16 @@ class Form
     public array $button = [];
 
 
+    /**
+     * @var boolean $laravel 
+     */
+    public bool $laravel = false;
+
+    /**
+     * @var array $formAttributes;
+     */
+    public array $formAttributes = [];
+
 
     public function column(\Closure $callback)
     {
@@ -174,8 +184,14 @@ class Form
         // var_dump($this);
         // die();
 
+        $formAttributes = $this->setAttribute($this->formAttributes);
+
         $target = (strlen($this->target)>0)?  "target='{$this->target}'" : '';
-        $html = "<form action='{$this->action}' method='{$this->method}' {$target}>";
+        $html = "<form action='{$this->action}' method='{$this->method}' {$target} {$formAttributes}>";
+            if($this->laravel){
+                $token = csrf_token();
+                $html .= '<input type="hidden" name="_token" value="'.$token.'">';
+            }
             $html .= "<table style='width:100%'>";
                 $html .= "<tr>";
             if(count($this->column)>0){
