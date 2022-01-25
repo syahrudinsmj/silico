@@ -107,3 +107,23 @@ Kumpulan component kecil-kecilan untuk digunakan pribadi menggunakan php
 
 ```
 </details>
+
+
+
+<details>
+    <summary> COLUMN</summary>
+
+```php
+    use App\Components\Column;
+    // ...
+
+    $col = new Column;
+    $col->add(function(){
+        $form = new Form;
+        $form->field("password","Password","password");
+        return $form->render();
+    });
+    return $col;
+
+```
+</details>

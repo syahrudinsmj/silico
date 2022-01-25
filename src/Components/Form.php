@@ -54,6 +54,11 @@ class Form
      */
     public array $formAttributes = [];
 
+    /**
+     * @var boolean $enableInit
+     */
+    public bool $enableInit = true;
+
 
     public function column(\Closure $callback)
     {
@@ -187,46 +192,53 @@ class Form
         $formAttributes = $this->setAttribute($this->formAttributes);
 
         $target = (strlen($this->target)>0)?  "target='{$this->target}'" : '';
-        $html = "<form action='{$this->action}' method='{$this->method}' {$target} {$formAttributes}>";
+        $html = '';
+        if ($this->enableInit){
+            $html .= "<form action='{$this->action}' method='{$this->method}' {$target} {$formAttributes}>";
+        }
             if($this->laravel){
                 $token = csrf_token();
                 $html .= '<input type="hidden" name="_token" value="'.$token.'">';
             }
             $html .= "<table style='width:100%'>";
                 $html .= "<tr>";
-            if(count($this->column)>0){
-                foreach($this->column as $kcol => $vcol){
-                    $html .= "<td>";
-                    foreach($vcol as $kdt => $vdt){
-                        $html .= $vdt;
-                    }
-                    $html .= "</td>";
-                }
-            }else{
-                $html .= "<td>";
-                foreach($this->data as $kdt => $vdt){
-                        $html .= $vdt;
-                }
-                $html .= "</td>";
-            }
-                $html .= "</tr>";
-                $counter = count($this->column);
-                $html .= "<tr>";
-                    $html .= "<td colspan='{$counter}'>";
-                    // button place
-                    if(count($this->button)>0){
-                        foreach($this->button as $kbtn => $vbtn){
-                            $html .= $vbtn;
+                    if(count($this->column)>0){
+                        foreach($this->column as $kcol => $vcol){
+                            $html .= "<td>";
+                            foreach($vcol as $kdt => $vdt){
+                                $html .= $vdt;
+                            }
+                            $html .= "</td>";
                         }
                     }else{
-                        $html .= Button::get("Submit","submit","","");
-                        $html .= Button::get("Batal","reset","","");
+                        $html .= "<td>";
+                        foreach($this->data as $kdt => $vdt){
+                                $html .= $vdt;
+                        }
+                        $html .= "</td>";
                     }
-                    $html .= "</td>";
                 $html .= "</tr>";
+                if ($this->enableInit){
+                    $counter = count($this->column);
+                    $html .= "<tr>";
+                        $html .= "<td colspan='{$counter}'>";
+                        // button place
+                        if(count($this->button)>0){
+                            foreach($this->button as $kbtn => $vbtn){
+                                $html .= $vbtn;
+                            }
+                        }else{
+                            $html .= Button::get("Submit","submit","","");
+                            $html .= Button::get("Batal","reset","","");
+                        }
+                        $html .= "</td>";
+                    $html .= "</tr>";
+                }
 
             $html .= "</table>";
-        $html .= "</form>";
+        if ($this->enableInit){
+            $html .= "</form>";
+        }
 
         return $html;
     }
