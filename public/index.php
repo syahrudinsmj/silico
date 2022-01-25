@@ -30,19 +30,54 @@ require '../vendor/autoload.php';
 // return $table;
 
 
-use App\Components\Card;
-use App\Components\Tab;
+// use App\Components\Card;
+// use App\Components\Tab;
+// use App\Components\Form;
+
+// $card = new Card;
+
+// $card->setTitle('Data User');
+// $card->setDescription('List data user');
+// $card->setBody(function(){
+//     // init form
+//     $form = new Form;
+//     $form->field("password","Password","password");
+//     return $form->render();
+// });
+
+// return $card;
+
+
 use App\Components\Form;
 
-$card = new Card;
+$form = new Form;
+$form->enableInit = false;
+$form->field("password","Password","password");
+return $form;
 
-$card->setTitle('Data User');
-$card->setDescription('List data user');
-$card->setBody(function(){
-    // init form
-    $form = new Form;
-    $form->field("password","Password","password");
-    return $form->render();
-});
+// use App\Components\Column;
+// use App\Components\Form;
 
-return $card;
+// $col = new Column;
+// $col->add(function(){
+//     $form = new Form;
+//     $form->field("password","Password","password");
+//     return $form->render();
+// });
+// $col->add(function(){
+//     $form = new Form;
+//     $form->field("password","Password","password");
+//     return $form->render();
+// });
+// $col->add(function(){
+//     $form = new Form;
+//     $form->field("password","Password","password");
+//     return $form->render();
+// });
+// $col->add(function(){
+//     $form = new Form;
+//     $form->field("password","Password","password");
+//     return $form->render();
+// });
+
+// return $col;
