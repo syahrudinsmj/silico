@@ -186,9 +186,6 @@ class Form
     {
         $this->active ++;
 
-        // var_dump($this);
-        // die();
-
         $formAttributes = $this->setAttribute($this->formAttributes);
 
         $target = (strlen($this->target)>0)?  "target='{$this->target}'" : '';
